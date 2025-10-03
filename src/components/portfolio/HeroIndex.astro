@@ -73,7 +73,7 @@ const withBase = (p: string) => `${base}${p.replace(/^\//, "")}`;
         <h1
           class="text-4xl font-black leading-none text-blacktext dark:text-white max-xl:text-3xl max-lg:text-2xl max-sm:text-center"
         >
-          {profileName} ðŸ‘‹
+          {profileName}
         </h1>
         <p class="mb-0 text-lg font-semibold leading-8 text-blacktext dark:text-gray-200 max-xl:text-base">Estudiante de Ingeniería de Sistemas (9° semestre) con experiencia en el desarrollo de aplicaciones web y sistemas de gestión académica. Me especializo en Python, PHP (MVC) y MySQL, además de contar con conocimientos en React, Node.js y metodologías ágiles (XP). He participado en proyectos relacionados con sistemas documentarios, gestión de pagos y soluciones con Business Intelligence y Machine Learning.</p>
 
@@ -84,8 +84,8 @@ const withBase = (p: string) => `${base}${p.replace(/^\//, "")}`;
             iconName={emailIconName}
           />
           <Button
-            link={profileLink}
-            text="About Me"
+            link={withBase(profileLink)}
+            text="Sobre mí"
             iconName="person"
             variant="dark"
           />
