@@ -5,8 +5,10 @@ import { getCollection } from "astro:content";
 const [staticData] = await getCollection("staticData");
 const { github, githubIconName, linkedin, linkedinIconName } = staticData.data;
 
-const { items = [] }: { items: (keyof typeof menu)[] } = Astro.props as {
+const { items = [], base = "/", isHome = false } = Astro.props as {
   items: (keyof typeof menu)[];
+  base?: string;
+  isHome?: boolean;
 };
 
 const menu = {
@@ -36,7 +38,9 @@ const baseClasses = {
 
 <script>
   document.addEventListener("DOMContentLoaded", () => {
-    const isHome = window.location.pathname === "/";
+    const nav = document.querySelector("nav") as HTMLElement | null;
+    const base = (nav?.getAttribute("data-base") || "/").replace(/\/$/, "/");
+    const isHome = window.location.pathname === base;
 
     // Classes for link states
     const linkClasses = {
@@ -68,8 +72,15 @@ const baseClasses = {
         : "";
 
       document.querySelectorAll("nav a").forEach((link) => {
-        const path = link.getAttribute("data-path");
-        toggleLinkClasses(link, path === currentPath || path === currentHash);
+        const path = link.getAttribute("data-path") || "";
+        let active = false;
+        if (path.startsWith("#")) {
+          active =
+            isHome && (path === currentHash || (path === "#home" && currentHash === ""));
+        } else {
+          active = path === currentPath;
+        }
+        toggleLinkClasses(link, active);
       });
     }
 
@@ -92,7 +103,7 @@ const baseClasses = {
             if (sectionId) {
               navLinks.forEach((link) => {
                 const path = link.getAttribute("data-path");
-                toggleLinkClasses(link, path === `/#${sectionId}`);
+                toggleLinkClasses(link, path === `#${sectionId}`);
               });
             }
           }
@@ -108,7 +119,7 @@ const baseClasses = {
   });
 </script>
 
-<nav class={baseClasses.nav} role="navigation" aria-label="Main Navigation">
+<nav class={baseClasses.nav} role="navigation" aria-label="Main Navigation" data-base={base}>
   {
     items.map((key: string) => {
       const item = menu[key as keyof typeof menu];
@@ -117,44 +128,57 @@ const baseClasses = {
       if ("dropdown" in item) {
         return (
           <div class={baseClasses.dropdown}>
-            <a
-              href={item.path}
-              class={baseClasses.link}
-              data-path={item.path}
-              aria-label={item.name}
-              aria-current={
-                item.path === Astro.url.pathname ? "page" : undefined
-              }
-            >
-              {item.name}
-            </a>
-            <div class={baseClasses.dropdownMenu}>
-              {item.dropdown.map((dropdownItem) => (
+            {(() => {
+              const href = `${base}${item.path.substring(1)}`;
+              const dataPath = item.path.startsWith("/#")
+                ? item.path.substring(1) // e.g. "#home"
+                : href; // full path for pages
+              return (
                 <a
-                  href={dropdownItem.path}
-                  class={baseClasses.dropdownItem}
-                  data-path={dropdownItem.path}
-                  aria-label={dropdownItem.name}
+                  href={href}
+                  class={baseClasses.link}
+                  data-path={dataPath}
+                  aria-label={item.name}
                 >
-                  {dropdownItem.name}
+                  {item.name}
                 </a>
-              ))}
+              );
+            })()}
+            <div class={baseClasses.dropdownMenu}>
+              {item.dropdown.map((dropdownItem) => {
+                const href = `${base}${dropdownItem.path.substring(1)}`;
+                return (
+                  <a
+                    href={href}
+                    class={baseClasses.dropdownItem}
+                    data-path={href}
+                    aria-label={dropdownItem.name}
+                  >
+                    {dropdownItem.name}
+                  </a>
+                );
+              })}
             </div>
           </div>
         );
       }
 
-      return (
-        <a
-          href={item.path}
-          class={baseClasses.link}
-          data-path={item.path}
-          aria-label={item.name}
-          aria-current={item.path === Astro.url.pathname ? "page" : undefined}
-        >
-          {item.name}
-        </a>
-      );
+      return (() => {
+        const href = `${base}${item.path.substring(1)}`;
+        const dataPath = item.path.startsWith("/#")
+          ? item.path.substring(1)
+          : href;
+        return (
+          <a
+            href={href}
+            class={baseClasses.link}
+            data-path={dataPath}
+            aria-label={item.name}
+          >
+            {item.name}
+          </a>
+        );
+      })();
     })
   }
 
