@@ -45,13 +45,11 @@ if (!all) {
 <section
   class="py-8 max-lg:px-4 max-md:px-8 max-sm:px-0 max-md:py-4 max-w-4xl mx-auto"
 >
-  {
-    all && (
-      <div class="flex gap-4 pb-6 items-center text-center justify-center">
-        <Heading text="All" textGradient="Posts" level={2} />
-      </div>
-    )
-  }
+  { all && (
+    <div class="flex gap-4 pb-6 items-center text-center justify-center">
+      <Heading text="Todos" textGradient="artículos" level={2} />
+    </div>
+  ) }
 
   <div class="flex flex-col gap-8 w-full mx-auto">
     {
@@ -67,16 +65,14 @@ if (!all) {
       ))
     }
   </div>
-  {
-    !all && (
-      <div id="morePosts" class="w-full flex justify-center text-center my-12">
-        <a
-          href="/blog/posts/"
-          class="font-bold cursor-pointer text-mint-400 dark:text-mint-100 hover:text-mint-500 dark:hover:text-mint-300 transition-all"
-        >
-          View all posts...
-        </a>
-      </div>
-    )
-  }
+  { !all && (
+    <div id="morePosts" class="w-full flex justify-center text-center my-12">
+      <a
+        href={`${import.meta.env.BASE_URL}blog/posts/`}
+        class="font-bold cursor-pointer text-mint-400 dark:text-mint-100 hover:text-mint-500 dark:hover:text-mint-300 transition-all"
+      >
+        Ver todos los artículos...
+      </a>
+    </div>
+  ) }
 </section>

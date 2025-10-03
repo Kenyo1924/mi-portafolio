@@ -131,18 +131,28 @@ const buttonClasses = `${baseClasses} ${variantClasses[variant]}`;
 // Generate aria-label if not provided
 const buttonAriaLabel = ariaLabel || (iconName ? `${text} ${iconName}` : text);
 
-// Determine if it's an external link
-const isExternalLink = isExternal || link.startsWith('http');
+// Determine if it's an absolute/external link
+const isHttp = /^https?:/i.test(link);
+const isAbsolute = /^(https?:|mailto:|tel:|#)/i.test(link);
+const isExternalLink = isExternal || isHttp;
 
-// Additional attributes for external links
+// Resolve final href respecting the site's base for internal links
+const finalHref = (() => {
+  if (disabled) return '#';
+  if (isAbsolute) return link;
+  const base = import.meta.env.BASE_URL || '/';
+  return `${base}${link.startsWith('/') ? link.slice(1) : link}`;
+})();
+
+// Additional attributes for http(s) external links
 const externalAttributes = isExternalLink ? {
-    target: '_blank',
-    rel: 'noopener noreferrer'
+  target: '_blank',
+  rel: 'noopener noreferrer'
 } : {};
 
-// Loading state
-const loadingText = isLoading ? 'Loading...' : text;
-const loadingAriaLabel = isLoading ? `${buttonAriaLabel} - Loading` : buttonAriaLabel;
+// Loading state (ES)
+const loadingText = isLoading ? 'Cargando…' : text;
+const loadingAriaLabel = isLoading ? `${buttonAriaLabel} - Cargando` : buttonAriaLabel;
 ---
 
 <div
@@ -151,7 +161,7 @@ const loadingAriaLabel = isLoading ? `${buttonAriaLabel} - Loading` : buttonAria
 >
     <a 
         class:list={[buttonClasses, className]} 
-        href={disabled ? '#' : link}
+        href={finalHref}
         aria-label={loadingAriaLabel}
         role="button"
         aria-disabled={disabled}

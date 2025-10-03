@@ -72,7 +72,7 @@ const {
             class="h-full w-full max-sm:rounded-full rounded-2xl max-sm:size-20 bg-center bg-cover"
             style={`background-image: url(${profileImage})`}
           >
-            <a href={profileLink} class="h-full w-full flex"></a>
+          <a href={`${import.meta.env.BASE_URL}${profileLink.replace(/^\//,'')}`} class="h-full w-full flex"></a>
           </div>
         </div>
         <div
@@ -88,7 +88,7 @@ const {
           <Heading text={profileName} level={3} />
           <Button
             link={profileLink}
-            text="About Me"
+            text="Sobre mí"
             iconName="person"
             class="drop-shadow-xl"
           />

@@ -44,13 +44,13 @@ const { frontmatter } = Astro.props;
               </div>
               <div class="relative z-20 flex w-full rounded-full bg-mint-900">
                 <div
-                  class="w-full aspect-square rounded-full bg-[url(/images/efeeleprofile.webp)] bg-center bg-cover"
+                  class="w-full aspect-square rounded-full bg-[url(/images/imagen_cv.png)] bg-center bg-cover"
                   aria-label="Photo of Fernando Aldair López Ponce (EFEELE) for the blog"
                 >
                   <a
-                    href="/about-me"
+                    href={`${import.meta.env.BASE_URL}about-me`}
                     class="flex h-full w-full"
-                    aria-label="View about me page"></a>
+                    aria-label="Ver página sobre mí"></a>
                 </div>
               </div>
             </div>
@@ -77,7 +77,7 @@ const { frontmatter } = Astro.props;
         </div>
       </div>
       <div class="flex gap-4 items-center">
-        <Heading text="About" textGradient="me" />
+        <Heading text="Sobre" textGradient="mí" />
       </div>
 
       <div class="markdown text-white" id="content">
@@ -90,7 +90,7 @@ const { frontmatter } = Astro.props;
     <div class="flex flex-col gap-8 pt-8 max-w-4xl mx-auto">
       <div class="flex gap-4 items-center justify-center">
         <Icon class="text-3xl text-white" name="briefcase" />
-        <Heading text="Experience" textGradient="Work" level={2} />
+        <Heading text="Experiencia" textGradient="Laboral" level={2} />
       </div>
 
       <Experience />
@@ -100,7 +100,7 @@ const { frontmatter } = Astro.props;
     <div class="flex flex-col gap-8 max-w-3xl justify-center mx-auto">
       <div class="flex gap-4 items-center justify-center">
         <Icon class="text-3xl text-white" name="dashboard" />
-        <Heading text="Stack" textGradient="Technological" level={2} />
+        <Heading text="Stack" textGradient="Tecnológico" level={2} />
       </div>
       <Tools variant="center" />
     </div>
