@@ -1,4 +1,4 @@
-ï»¿---
+---
 import Button from "../ui/Button.astro";
 import Heading from "../ui/Heading.astro";
 import Tools from "../portfolio/Tools.astro";
@@ -52,7 +52,7 @@ const withBase = (p: string) => `${base}${p.replace(/^\//, "")}`;
               <a
                 href={withBase(profileLink)}
                 class="flex h-full w-full"
-                aria-label="Ver pÃƒÂ¡gina sobre mÃƒÂ­"></a>
+                aria-label="Ver pÃ¡gina sobre mÃ­"></a>
             </div>
           </div>
         </div>
@@ -75,7 +75,7 @@ const withBase = (p: string) => `${base}${p.replace(/^\//, "")}`;
         >
           {profileName}
         </h1>
-        <p class="mb-0 text-lg font-semibold leading-8 text-blacktext dark:text-gray-200 max-xl:text-base">Estudiante de IngenierÃ­a de Sistemas (9Â° semestre) con experiencia en el desarrollo de aplicaciones web y sistemas de gestiÃ³n acadÃ©mica. Me especializo en Python, PHP (MVC) y MySQL, ademÃ¡s de contar con conocimientos en React, Node.js y metodologÃ­as Ã¡giles (XP). He participado en proyectos relacionados con sistemas documentarios, gestiÃ³n de pagos y soluciones con Business Intelligence y Machine Learning.</p>
+        <p class="mb-0 text-lg font-semibold leading-8 text-blacktext dark:text-gray-200 max-xl:text-base">Estudiante de Ingeniería de Sistemas (9° semestre) con experiencia en el desarrollo de aplicaciones web y sistemas de gestión académica. Me especializo en Python, PHP (MVC) y MySQL, además de contar con conocimientos en React, Node.js y metodologías ágiles (XP). He participado en proyectos relacionados con sistemas documentarios, gestión de pagos y soluciones con Business Intelligence y Machine Learning.</p>
 
         <div class="flex gap-4 max-sm:flex-col max-sm:items-center">
           <Button
@@ -84,8 +84,8 @@ const withBase = (p: string) => `${base}${p.replace(/^\//, "")}`;
             iconName={emailIconName}
           />
           <Button
-            link={withBase(profileLink)}
-            text="Sobre mÃ­"
+            link={profileLink}
+            text="Sobre mí"
             iconName="person"
             variant="dark"
           />
