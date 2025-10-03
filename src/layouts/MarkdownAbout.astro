@@ -44,7 +44,7 @@ const { frontmatter } = Astro.props;
               </div>
               <div class="relative z-20 flex w-full rounded-full bg-mint-900">
                 <div
-                  class="w-full aspect-square rounded-full bg-center bg-cover" style=`"background-image: url(${import.meta.env.BASE_URL}images/imagen_cv.png)`"
+                  class="w-full aspect-square rounded-full bg-center bg-cover" style={`background-image: url(${(import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : import.meta.env.BASE_URL + '/') + 'images/imagen_cv.png'})`}
                   aria-label="Photo of Fernando Aldair López Ponce (EFEELE) for the blog"
                 >
                   <a
