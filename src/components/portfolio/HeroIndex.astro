@@ -19,6 +19,8 @@ const {
   portfolioImage,
   contactSectionButtonText,
 } = staticData.data;
+
+const withBase = (p: string) => `${import.meta.env.BASE_URL}${p.replace(/^\//, "")}`;
 ---
 
 <section
@@ -43,13 +45,13 @@ const {
           <div class="relative z-20 flex w-full rounded-full bg-mint-900">
             <div
               class="w-full aspect-square rounded-full bg-center bg-cover"
-              style={`background-image: url(${profileImage})`}
+              style={`background-image: url(${withBase(profileImage)})`}
               aria-label={profileAlt}
             >
               <a
-                href={profileLink}
+                href={withBase(profileLink)}
                 class="flex h-full w-full"
-                aria-label="View about me page"></a>
+                aria-label="Ver página sobre mí"></a>
             </div>
           </div>
         </div>
