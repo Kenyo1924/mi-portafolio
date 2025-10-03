@@ -45,7 +45,7 @@ const { frontmatter } = Astro.props;
               <div class="relative z-20 flex w-full rounded-full bg-mint-900">
                 <div
                   class="w-full aspect-square rounded-full bg-center bg-cover" style={`background-image: url(${(import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : import.meta.env.BASE_URL + '/') + 'images/imagen_cv.png'})`}
-                  aria-label="Photo of Fernando Aldair LÃ³pez Ponce (EFEELE) for the blog"
+                  aria-label="Foto de perfil de Kenyo Ramirez"
                 >
                   <a
                     href={`${import.meta.env.BASE_URL}about-me`}
@@ -58,7 +58,7 @@ const { frontmatter } = Astro.props;
 
           <div class="w-full flex flex-col justify-center gap-4 max-md:gap-2">
             <div class="text-center">
-              <Heading textGradient="Fernando LÃ³pez | EFEELE" />
+              <Heading text="Sobre mí" textGradient="KENYO RAMIREZ" />
             </div>
 
             <p
@@ -66,18 +66,12 @@ const { frontmatter } = Astro.props;
             >
               <b
                 class="bg-linear-to-r from-riptide-400 to-mint-500 dark:to-mint-200 dark:from-riptide-300 text-transparent bg-clip-text"
-                >Frontend Developer</b
-              > with <b
-                class="bg-linear-to-r from-riptide-400 to-mint-500 dark:to-mint-200 dark:from-riptide-300 text-transparent bg-clip-text"
-                >8 years of experience</b
-              >, passionate about development, technology, and coffee that
-              sparks ideas. I love bringing digital projects to life. ðŸš€â˜•
-            </p>
+                >Ingeniero de Sistemas — Huancayo, Perú.</p>
           </div>
         </div>
       </div>
       <div class="flex gap-4 items-center">
-        <Heading text="Sobre" textGradient="mÃ­" />
+        <Heading text="Sobre" textGradient="mí" />
       </div>
 
       <div class="markdown text-white" id="content">
@@ -96,11 +90,11 @@ const { frontmatter } = Astro.props;
       <Experience />
     </div>
   </section>
-  <section class="py-8 px-8 max-md:py-4 mt-10 mb-20 scroll-m-16" id="sttack">
+  <section class="py-8 px-8 max-md:py-4 mt-10 mb-20 scroll-m-16" id="stack">
     <div class="flex flex-col gap-8 max-w-3xl justify-center mx-auto">
       <div class="flex gap-4 items-center justify-center">
         <Icon class="text-3xl text-white" name="dashboard" />
-        <Heading text="Stack" textGradient="TecnolÃ³gico" level={2} />
+        <Heading text="Stack" textGradient="Tecnológico" level={2} />
       </div>
       <Tools variant="center" />
     </div>
